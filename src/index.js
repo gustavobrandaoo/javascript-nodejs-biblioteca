@@ -28,13 +28,19 @@ function qubraEmPagrafos(texto) {
     console.log(contagem);
 }
 
-function verificaPalavrasDuplicadas(texto) {
-    const listaPalavras = texto.split(' ');
-    const resultado = {};
+function limpaPalavras(palavra) {
+  return palavra.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, '');
+}
 
-    // objeto[propriedade] = valor;
-    listaPalavras.forEach(palavra => {
-        resultado[palavra] = (resultado[palavra] || 0) + 1
-    })
-    return resultado;
+function verificaPalavrasDuplicadas(texto) {
+  const listaPalavras = texto.split(' ');
+  const resultado = {};
+  // objeto[propriedade] = valor;
+  listaPalavras.forEach(palavra => {
+    if (palavra.length >= 3) {
+      const palavraLimpa = limpaPalavras(palavra);
+      resultado[palavraLimpa] = (resultado[palavraLimpa] || 0) + 1
+    }
+  })
+  return resultado;
 }
